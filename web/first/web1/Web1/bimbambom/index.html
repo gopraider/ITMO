@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Пора на фронт</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+<nav class="description">
+    <div class="info-container">
+        <a href="https://se.ifmo.ru/" target="_blank" class="image-link">
+            <img src="images/duck.png" alt="duck" class="duck">
+        </a>
+        <div id="Information">
+            Калакин Ярослав Евгеньевич
+            <br/>
+            P3209
+            <br/>
+            ИСУ/Вариант: 466084
+        </div>
+        <a href="https://github.com/gopraider" target="_blank" class="image-link">
+            <img src="images/GitHub.png" alt="GHimage" class="GHimage">
+        </a>
+    </div>
+    <div class="quote-container">
+        <blockquote class="nice-quote">
+            "Вы че, дурные? Другой реакции кроме "суицида" на неуспех изобразить не можете? Нормальная реакция на провал - сжать (разные места) и бороться =). Тряпки."
+        </blockquote>
+        <cite class="quote-author">@Клименков С.В.</cite>
+    </div>
+</nav>
+
+<div class="work-container">
+    <div class="input-group X">
+        <h3>Введите X: </h3>
+        <input type="text" id="x-input" name="x" placeholder="от -5 до 3">
+    </div>
+
+    <div class="checkbox-group Y">
+        <h3>Выберите Y:</h3>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option1"> -3
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option2"> -2
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option3"> -1
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option4"> 0
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option5"> 1
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option6"> 2
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option7"> 3
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option8"> 4
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox" name="options" value="option9"> 5
+        </label>
+    </div>
+
+    <div class="Button-group R">
+        <h3>Выберете R</h3>
+        <button type="button" class="btn" data-value="1">1</button>
+        <button type="button" class="btn" data-value="2">2</button>
+        <button type="button" class="btn" data-value="3">3</button>
+        <button type="button" class="btn" data-value="4">4</button>
+        <button type="button" class="btn" data-value="5">5</button>
+    </div>
+
+    <img src="images/graphics.png" alt="GRimage" class="GRimage">
+    <button type="button" class="submit">Отправить</button>
+    <div id="error-message"></div>
+
+</div>
+
+<section class="results-section">
+    <h2>Результаты вычислений</h2>
+    <div class="table-container">
+        <table class="results-table">
+            <thead>
+            <tr>
+                <th>Время запроса</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Результат</th>
+                <th>Время выполнения</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
