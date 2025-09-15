@@ -33,7 +33,7 @@ public class Numbers {
         float y = Float.parseFloat(params.get("y"));
         float r = Float.parseFloat(params.get("r"));
 
-        if (x < -5 && x>3){
+        if (x < -5 || x>3){
             sendError("x должен быть  из промежутка от [-5,3]");
             return false;
         }
