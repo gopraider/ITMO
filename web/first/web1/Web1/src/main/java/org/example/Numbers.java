@@ -1,74 +1,94 @@
 package org.example;
 
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import static org.example.Requester.sendError;
-
+@SuppressWarnings("checkstyle:RegexpMultiline")
 public class Numbers {
-    public static Map<String, String> parseQueryString(String query) {
-        Map<String, String> params = new HashMap<>();
-        String[] pairs = query.split("&");
-        for (String pair : pairs) {
+
+    public static Map<String, List<String>> parseQueryString(String query) {
+        Map<String, List<String>> params = new HashMap<>();
+        if (query == null || query.isBlank()) return params;
+        for (String pair : query.split("&")) {
+            if (pair.isEmpty()) continue;
             String[] kv = pair.split("=", 2);
-            if (kv.length == 2) {
-                String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
-                String value = URLDecoder.decode(kv[1], StandardCharsets.UTF_8);
-                params.put(key, value);
-            }
+            String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
+            String value = kv.length > 1 ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8) : "";
+            params.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
         }
         return params;
     }
-    public static boolean validateQueryString( Map<String, String> params) {
 
+    @SuppressWarnings({"checkstyle:NeedBraces", "checkstyle:LineLength"})
+    public static ValidationResult validateAll(Map<String, List<String>> params) {
+        List<Warning> warnings = new ArrayList<>();
 
-        if (!params.containsKey("x") || !params.containsKey("y") || !params.containsKey("r")) {
-            sendError("Отсутствуют обязательные параметры (x, y, r)");
-            return false;
+        List<String> xs = params.get("x");
+        List<String> ys = params.get("y");
+        List<String> rs = params.get("r");
+
+        if (xs == null) warnings.add(new Warning("x", "обязательный параметр"));
+        else if (xs.size() != 1) warnings.add(new Warning("x", "должен быть указан ровно один раз"));
+
+        if (ys == null) warnings.add(new Warning("y", "обязательный параметр"));
+        else if (ys.size() != 1) warnings.add(new Warning("y", "должен быть указан ровно один раз"));
+
+        if (rs == null) warnings.add(new Warning("r", "обязательный параметр"));
+        else if (rs.size() != 1) warnings.add(new Warning("r", "должен быть указан ровно один раз"));
+
+        if (!warnings.isEmpty()) return new ValidationResult(null, null, null, warnings);
+
+        String xsVal = xs.get(0).trim();
+        String ysVal = ys.get(0).trim();
+        String rsVal = rs.get(0).trim();
+
+        BigDecimal x = null;
+        BigDecimal y = null;
+        BigDecimal r = null;
+
+        try {
+            x = new BigDecimal(xsVal);
+        } catch (Exception e) {
+            warnings.add(new Warning("x", "должен быть числом"));
+        }
+        try {
+            y = new BigDecimal(ysVal);
+        } catch (Exception e) {
+            warnings.add(new Warning("y", "должен быть числом"));
+        }
+        try {
+            r = new BigDecimal(rsVal);
+        } catch (Exception e) {
+            warnings.add(new Warning("r", "должен быть числом"));
         }
 
-        float x = Float.parseFloat(params.get("x"));
-        float y = Float.parseFloat(params.get("y"));
-        float r = Float.parseFloat(params.get("r"));
+        final Set<BigDecimal> MaybeY = Set.of(BigDecimal.valueOf(-3), BigDecimal.valueOf(-2), BigDecimal.valueOf(-1), BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4), BigDecimal.valueOf(5));
+        final Set<BigDecimal> MaybeR = Set.of(BigDecimal.valueOf(1), BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4), BigDecimal.valueOf(5));
 
-        if (x < -5 || x>3){
-            sendError("x должен быть  из промежутка от [-5,3]");
-            return false;
-        }
-        float[] MaybeR = {1,2,3,4,5};
-        boolean found = false;
-        for (float num : MaybeR) {
-            if (num == r) {
-                found = true;
-                break;
+        if (x != null) {
+            if (x.compareTo(BigDecimal.valueOf(-5)) < 0 || x.compareTo(BigDecimal.valueOf(3)) > 0) {
+                warnings.add(new Warning("x", "должен быть из промежутка [-5, 3]"));
             }
         }
-
-        if (!found) {
-            sendError("r должен быть  из промежутка от {1,2,3,4,5}");
-            return false;
+        if (y != null && !MaybeY.contains(y.stripTrailingZeros())) {
+            warnings.add(new Warning("y", "должен быть одним из {-3, -2, -1, 0, 1, 2, 3, 4, 5}"));
         }
-        float[] MaybeY = {-3, -2, -1, 0, 1, 2, 3, 4, 5};
-        found = false;
-        for (float num : MaybeY) {
-            if (num == y) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            sendError("y должен быть  из промежутка от {-3, -2, -1, 0, 1, 2, 3, 4, 5}");
-            return false;
+        if (r != null && !MaybeR.contains(r.stripTrailingZeros())) {
+            warnings.add(new Warning("r", "должен быть одним из {1, 2, 3, 4, 5}"));
         }
 
-        return true;
+        return new ValidationResult(x, y, r, warnings);
     }
-    public static boolean calculate(float x, float y, float r) {
-        if (x <= 0 && y >= 0 && x >= -r / 2 && y <= r) return true;
-        if (x >= 0 && y <= 0 && y >= -x - r / 2) return true;
-        return x <= 0 && y <= 0 && (x * x + y * y) <= (r / 2) * (r / 2);
+
+    public static boolean calculate(BigDecimal x, BigDecimal y, BigDecimal r) {
+        float xf = x.floatValue();
+        float yf = y.floatValue();
+        float rf = r.floatValue();
+        if (xf <= 0 && yf >= 0 && xf >= -rf / 2 && yf <= rf) return true;
+        if (xf >= 0 && yf <= 0 && yf >= -xf - rf / 2) return true;
+        return xf <= 0 && yf <= 0 && (xf * xf + yf * yf) <= (rf / 2) * (rf / 2);
     }
 
 

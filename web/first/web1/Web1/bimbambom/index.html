@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="index.js"></script>
 </head>
+<video id="camera-background" autoplay muted playsinline></video>
 <body>
 <nav class="description">
     <div class="info-container">
@@ -78,7 +79,9 @@
         <button type="button" class="btn" data-value="5">5</button>
     </div>
 
-    <img src="images/graphics.png" alt="GRimage" class="GRimage">
+    <div class="graph-container">
+        <canvas id="graph" width="400" height="400"></canvas>
+    </div>
     <button type="button" class="submit">Отправить</button>
     <div id="error-message"></div>
 

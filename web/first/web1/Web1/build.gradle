@@ -10,27 +10,43 @@ repositories {
 }
 
 dependencies {
+    // Тесты
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Ваш локальный JAR
+    implementation files('libs/fastcgi-lib.jar')
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 test {
     useJUnitPlatform()
 }
 
-dependencies {
-    implementation files('libs/fastcgi-lib.jar') // Указываем путь к библиотеке
-}
-// Этот блок нужен для сборки fat jar файла
+// Сборка fat JAR
 jar {
+    // игнорировать дубликаты (лицензии, service-файлы и т.д.)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     manifest {
-        attributes(
-                'Main-Class': 'org.example.Main'
-        )
+        attributes('Main-Class': 'org.example.Main')
     }
+
     from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect { dep ->
+            dep.isDirectory() ? dep : zipTree(dep).matching {
+                // убрать multi-release секции и модульные дескрипторы
+                exclude 'META-INF/versions/**'
+                exclude 'module-info.class'
+                // убрать подписи и вспомогательные метаданные, которые часто конфликтуют
+                exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+                exclude 'META-INF/DEPENDENCIES', 'META-INF/LICENSE*', 'META-INF/NOTICE*'
+            }
+        }
     }
+
     archiveFileName = 'labwork1.jar'
 }

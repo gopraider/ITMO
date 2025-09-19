@@ -3,3 +3,6 @@ ssh -L 8080:localhost:1492 s466084@helios.cs.ifmo.ru -p 2222
 httpd -f ~/httpd-root/conf/httpd.conf -k start
 
 java -jar -DFCGI_PORT=1489 ~/httpd-root/fcgi-bin/app.jar
+
+
+/home/studs/s466084/data.json
