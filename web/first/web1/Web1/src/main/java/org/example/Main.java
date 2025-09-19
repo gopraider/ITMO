@@ -15,7 +15,7 @@ import static org.example.Requester.*;
 public class Main {
 
     private static final String JSON_FILE_PATH =
-            System.getenv().getOrDefault("JSON_FILE_PATH", "data.json");
+            System.getenv().getOrDefault("JSON_FILE_PATH", "/data/data.json");
 
     public static void main(String[] args) {
         FCGIInterface fcgi = new FCGIInterface();

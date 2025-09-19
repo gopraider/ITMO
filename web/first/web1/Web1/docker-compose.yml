@@ -1,21 +1,25 @@
 services:
-  # Наше приложение
   fcgi:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - JSON_FILE_PATH=/data/data.json
+    volumes:
+      - ./data:/data
     networks:
-      backend:
+      - backend
 
-  # Сам веб-сервер
   httpd:
-    image: "httpd:2.4.62"
+    image: httpd:2.4.62
     ports:
       - "8080:8080"
     volumes:
-      - "./httpd.conf:/usr/local/apache2/conf/httpd.conf"
-      - "./bimbambom:/var/www"
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./bimbambom:/var/www
+      - ./data:/data:ro
     networks:
-      backend:
+      - backend
+
 networks:
   backend:
