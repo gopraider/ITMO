@@ -7,9 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.format.DateTimeFormatter;
 
-
 public class DumpManager {
-
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ss");
 
@@ -55,10 +53,9 @@ public class DumpManager {
         );
     }
 
-
     public synchronized void appendToFile(Result r) throws IOException {
         String content = Files.readString(jsonFilePath).trim();
-        if (content.isEmpty() || !content.endsWith("]")) {
+        if (!content.endsWith("]")) {
             Files.writeString(jsonFilePath, "[\n" + resultToJson(r) + "\n]",
                     StandardOpenOption.TRUNCATE_EXISTING);
             return;
@@ -78,6 +75,6 @@ public class DumpManager {
             return "[]";
         }
         String s = Files.readString(jsonFilePath).trim();
-        return (s.isEmpty() || !s.startsWith("[") || !s.endsWith("]")) ? "[]" : s;
+        return (!s.startsWith("[") || !s.endsWith("]")) ? "[]" : s;
     }
 }

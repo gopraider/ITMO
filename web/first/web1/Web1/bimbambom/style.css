@@ -213,7 +213,7 @@
     object-fit: cover;
     z-index: -1;
     background: white;
-  
+
     transform: scaleX(-1);
     filter: blur(8px) brightness(0.8);
 

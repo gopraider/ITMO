@@ -59,13 +59,9 @@ public class Main {
                     sendValidationProblem(vr.warnings());
                     continue;
                 }
-
-
                 long t0 = System.nanoTime();
                 boolean calc = calculate(vr.x(), vr.y(), vr.r());
-
                 long t1 = System.nanoTime();
-
                 long execMs = t1 - t0;
                 Result res = new Result(
                         LocalDateTime.now(),

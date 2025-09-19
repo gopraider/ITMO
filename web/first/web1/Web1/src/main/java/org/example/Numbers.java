@@ -90,6 +90,4 @@ public class Numbers {
         if (xf >= 0 && yf <= 0 && yf >= -xf - rf / 2) return true;
         return xf <= 0 && yf <= 0 && (xf * xf + yf * yf) <= (rf / 2) * (rf / 2);
     }
-
-
 }
