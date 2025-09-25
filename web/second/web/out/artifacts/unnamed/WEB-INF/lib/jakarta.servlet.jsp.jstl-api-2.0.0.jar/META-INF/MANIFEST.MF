@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-Description: Jakarta Standard Tag Library 2.0 Specification
+Automatic-Module-Name: jakarta.servlet.jsp.jstl
+Bundle-License: http://www.eclipse.org/legal/epl-2.0, https://www.gnu.
+ org/software/classpath/license.html
+Bundle-SymbolicName: jakarta.servlet.jsp.jstl-api
+Implementation-Version: 2.0.0
+Bnd-LastModified: 1602873125932
+Bundle-ManifestVersion: 2
+Specification-Vendor: Eclipse Foundation
+Implementation-Vendor-Id: org.glassfish
+Bundle-DocURL: https://www.eclipse.org
+Bundle-Vendor: Eclipse Foundation
+Import-Package: jakarta.el;version="[4.0,5)",jakarta.servlet;version="
+ [5.0,6)",jakarta.servlet.http;version="[5.0,6)",jakarta.servlet.jsp;v
+ ersion="[3.0,4)",jakarta.servlet.jsp.jstl.core,jakarta.servlet.jsp.ta
+ gext;version="[3.0,4)",javax.xml.parsers,org.xml.sax,org.xml.sax.help
+ ers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-5.1.1.202006162103
+Implementation-Vendor: Eclipse Foundation
+Export-Package: jakarta.servlet.jsp.jstl.core;uses:="jakarta.el,jakart
+ a.servlet,jakarta.servlet.http,jakarta.servlet.jsp,jakarta.servlet.js
+ p.tagext";version="2.0.0",jakarta.servlet.jsp.jstl.fmt;uses:="jakarta
+ .servlet.jsp";version="2.0.0",jakarta.servlet.jsp.jstl.sql;version="2
+ .0.0",jakarta.servlet.jsp.jstl.tlv;uses:="jakarta.servlet.jsp.tagext"
+ ;version="2.0.0"
+Bundle-Name: Jakarta Standard Tag Library API
+Bundle-Version: 2.0.0
+Extension-Name: jakarta.servlet.jsp.jstl
+Build-Jdk-Spec: 1.8
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 2.0
+

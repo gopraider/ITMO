@@ -1,0 +1,82 @@
+Manifest-Version: 1.0
+Bundle-Description: Jakarta Standard Tag Library Implementation
+Bundle-License: http://www.eclipse.org/legal/epl-2.0, https://www.gnu.
+ org/software/classpath/license.html
+Bundle-SymbolicName: org.glassfish.web.jakarta.servlet.jsp.jstl
+Implementation-Version: 2.0.0
+Specification-Vendor: Eclipse Foundation
+Bnd-LastModified: 1602873997106
+Bundle-ManifestVersion: 2
+Bundle-DocURL: https://www.eclipse.org
+Bundle-Vendor: Eclipse Foundation
+Import-Package: jakarta.el;version="[4.0,5)",jakarta.servlet;version="
+ [5.0,6)",jakarta.servlet.http;version="[5.0,6)",jakarta.servlet.jsp;v
+ ersion="[3.0,4)",jakarta.servlet.jsp.el;version="[3.0,4)",jakarta.ser
+ vlet.jsp.jstl.core;version="[2.0,3)",jakarta.servlet.jsp.jstl.fmt;ver
+ sion="[2.0,3)",jakarta.servlet.jsp.jstl.sql;version="[2.0,3)",jakarta
+ .servlet.jsp.tagext;version="[3.0,4)",javax.naming,javax.sql,javax.xm
+ l.namespace,javax.xml.parsers,javax.xml.transform,javax.xml.transform
+ .dom,javax.xml.transform.sax,javax.xml.transform.stream,javax.xml.xpa
+ th,org.apache.taglibs.standard.lang.jstl,org.apache.taglibs.standard.
+ lang.jstl.parser,org.apache.taglibs.standard.lang.jstl.test.beans,org
+ .apache.taglibs.standard.lang.support,org.apache.taglibs.standard.res
+ ources,org.apache.taglibs.standard.tag.common.core,org.apache.taglibs
+ .standard.tag.common.fmt,org.apache.taglibs.standard.tag.common.sql,o
+ rg.apache.taglibs.standard.tag.common.xml,org.apache.taglibs.standard
+ .tag.el.core,org.w3c.dom,org.w3c.dom.traversal,org.xml.sax,org.xml.sa
+ x.ext,org.xml.sax.helpers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-5.1.1.202006162103
+Implementation-Vendor: Eclipse Foundation
+Export-Package: org.apache.taglibs.standard;version="2.0.0",org.apache
+ .taglibs.standard.extra.spath;uses:="jakarta.servlet.jsp,jakarta.serv
+ let.jsp.tagext,org.xml.sax,org.xml.sax.helpers";version="2.0.0",org.a
+ pache.taglibs.standard.functions;uses:="jakarta.servlet.jsp";version=
+ "2.0.0",org.apache.taglibs.standard.lang.jstl;uses:="jakarta.servlet.
+ jsp,jakarta.servlet.jsp.tagext,org.apache.taglibs.standard.lang.suppo
+ rt";version="2.0.0",org.apache.taglibs.standard.lang.jstl.parser;uses
+ :="org.apache.taglibs.standard.lang.jstl";version="2.0.0",org.apache.
+ taglibs.standard.lang.jstl.test;uses:="jakarta.el,jakarta.servlet,jak
+ arta.servlet.http,jakarta.servlet.jsp,jakarta.servlet.jsp.el";version
+ ="2.0.0",org.apache.taglibs.standard.lang.jstl.test.beans;version="2.
+ 0.0",org.apache.taglibs.standard.lang.support;uses:="jakarta.servlet.
+ jsp,jakarta.servlet.jsp.tagext";version="2.0.0",org.apache.taglibs.st
+ andard.resources;version="2.0.0",org.apache.taglibs.standard.tag.comm
+ on.core;uses:="jakarta.servlet.http,jakarta.servlet.jsp,jakarta.servl
+ et.jsp.jstl.core,jakarta.servlet.jsp.tagext";version="2.0.0",org.apac
+ he.taglibs.standard.tag.common.fmt;uses:="jakarta.servlet.jsp,jakarta
+ .servlet.jsp.jstl.fmt,jakarta.servlet.jsp.tagext";version="2.0.0",org
+ .apache.taglibs.standard.tag.common.sql;uses:="jakarta.servlet.jsp,ja
+ karta.servlet.jsp.jstl.sql,jakarta.servlet.jsp.tagext,javax.sql";vers
+ ion="2.0.0",org.apache.taglibs.standard.tag.common.xml;uses:="jakarta
+ .servlet.jsp,jakarta.servlet.jsp.jstl.core,jakarta.servlet.jsp.tagext
+ ,javax.xml.namespace,javax.xml.transform,javax.xml.xpath,org.apache.t
+ aglibs.standard.tag.common.core,org.w3c.dom,org.xml.sax";version="2.0
+ .0",org.apache.taglibs.standard.tag.el.core;uses:="jakarta.servlet.js
+ p,jakarta.servlet.jsp.jstl.core,jakarta.servlet.jsp.tagext,org.apache
+ .taglibs.standard.tag.common.core";version="2.0.0",org.apache.taglibs
+ .standard.tag.el.fmt;uses:="jakarta.servlet.jsp,org.apache.taglibs.st
+ andard.tag.common.fmt";version="2.0.0",org.apache.taglibs.standard.ta
+ g.el.sql;uses:="jakarta.servlet.jsp,org.apache.taglibs.standard.tag.c
+ ommon.sql";version="2.0.0",org.apache.taglibs.standard.tag.el.xml;use
+ s:="jakarta.servlet.jsp,org.apache.taglibs.standard.tag.common.xml";v
+ ersion="2.0.0",org.apache.taglibs.standard.tag.rt.core;uses:="jakarta
+ .servlet.jsp,jakarta.servlet.jsp.jstl.core,jakarta.servlet.jsp.tagext
+ ,org.apache.taglibs.standard.tag.common.core";version="2.0.0",org.apa
+ che.taglibs.standard.tag.rt.fmt;uses:="jakarta.servlet.jsp,jakarta.se
+ rvlet.jsp.jstl.fmt,org.apache.taglibs.standard.tag.common.fmt";versio
+ n="2.0.0",org.apache.taglibs.standard.tag.rt.sql;uses:="jakarta.servl
+ et.jsp,org.apache.taglibs.standard.tag.common.sql";version="2.0.0",or
+ g.apache.taglibs.standard.tag.rt.xml;uses:="jakarta.servlet.jsp,javax
+ .xml.transform,org.apache.taglibs.standard.tag.common.xml,org.xml.sax
+ ";version="2.0.0",org.apache.taglibs.standard.tei;uses:="jakarta.serv
+ let.jsp.tagext";version="2.0.0",org.apache.taglibs.standard.tlv;uses:
+ ="jakarta.servlet.jsp.tagext,org.xml.sax,org.xml.sax.helpers";version
+ ="2.0.0",org.glassfish.jstl.integration;version="2.0.0"
+Bundle-Name: Jakarta Standard Tag Library Implementation
+Bundle-Version: 2.0.0
+Extension-Name: jakarta.servlet.jsp.jstl
+Build-Jdk-Spec: 1.8
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 2.0
+
