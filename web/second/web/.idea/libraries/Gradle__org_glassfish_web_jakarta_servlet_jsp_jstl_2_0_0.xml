@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.glassfish.web" artifactId="jakarta.servlet.jsp.jstl" version="2.0.0" baseVersion="2.0.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.web/jakarta.servlet.jsp.jstl/2.0.0/377ec3878354cb2c1f96f99031728773c8e2603b/jakarta.servlet.jsp.jstl-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
