@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Используйте compileOnly вместо providedCompile
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0'
+}
+
+war {
+    archiveFileName = "your-app-name.war" // добавьте имя файла
+}
+
+test {
+    useJUnitPlatform()
+}
