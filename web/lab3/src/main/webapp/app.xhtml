@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Проверка попадания точки</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputScript library="js" name="graph.js"/>
+</h:head>
+
+<h:body>
+    <nav class="description">
+        <div class="info-container">
+            <a href="https://se.ifmo.ru/" target="_blank" class="image-link">
+                <h:graphicImage library="images" name="duck.png" alt="duck" styleClass="duck"/>
+            </a>
+            <div id="Information">
+                Калакин Ярослав Евгеньевич
+                <br/>P3209
+                <br/>ИСУ: 466084
+                <br/>Вариант 666
+            </div>
+            <a href="https://github.com/gopraider" target="_blank" class="image-link">
+                <h:graphicImage library="images" name="GitHub.png" alt="GHimage" styleClass="GHimage"/>
+            </a>
+        </div>
+        <div class="quote-container">
+            <blockquote class="nice-quote">
+                "Вы че, дурные? Другой реакции кроме "суицида" на неуспех изобразить не можете? Нормальная реакция на провал - сжать (разные места) и бороться =). Тряпки."
+            </blockquote>
+            <cite class="quote-author">@Клименков С.В.</cite>
+        </div>
+        <div class="quote-container">
+            <blockquote class="nice-quote">
+                «Все хвалят ЛДПР и меня. Это и есть демократия»
+            </blockquote>
+            <cite class="quote-author">@Жириновский В.В.</cite>
+        </div>
+    </nav>
+
+    <h:form id="mainForm">
+        <h2>Проверка попадания точки</h2>
+
+        <h:messages id="formMessages" styleClass="error-message" layout="list"/>
+
+        <div class="controls-container">
+
+            <div class="control-group">
+                <label for="xSelect">Координата X:</label>
+                <h:selectOneMenu id="xSelect" value="#{shotBean.x}" required="true" label="X">
+                    <f:selectItem itemValue="-5" itemLabel="-5"/>
+                    <f:selectItem itemValue="-4" itemLabel="-4"/>
+                    <f:selectItem itemValue="-3" itemLabel="-3"/>
+                    <f:selectItem itemValue="-2" itemLabel="-2"/>
+                    <f:selectItem itemValue="-1" itemLabel="-1"/>
+                    <f:selectItem itemValue="0"  itemLabel="0"/>
+                    <f:selectItem itemValue="1"  itemLabel="1"/>
+                    <f:selectItem itemValue="2"  itemLabel="2"/>
+                    <f:selectItem itemValue="3"  itemLabel="3"/>
+                    <f:ajax event="change" render="canvas formMessages" listener="#{shotBean.redrawCanvas}"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div class="control-group">
+                <label for="yInput">Координата Y:</label>
+                <h:inputText id="yInput" value="#{shotBean.y}" required="true" label="Y"
+                             converterMessage="Y должен быть числом"
+                             validatorMessage="Y должен быть от -3 до 3">
+                    <f:convertNumber type="number" locale="ru_RU"/>
+                    <f:validateDoubleRange minimum="-3" maximum="3"/>
+                </h:inputText>
+                <h:message id="yMsg" for="yInput" styleClass="error-message"/>
+            </div>
+
+            <div class="control-group">
+                <label for="rSelect">Радиус R:</label>
+                <h:selectOneMenu id="rSelect" value="#{shotBean.r}" required="true" label="R">
+                    <f:selectItem itemValue="1"   itemLabel="1"/>
+                    <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                    <f:selectItem itemValue="2"   itemLabel="2"/>
+                    <f:selectItem itemValue="2.5" itemLabel="2.5"/>
+                    <f:selectItem itemValue="3"   itemLabel="3"/>
+                    <f:ajax event="change" render="canvas formMessages" listener="#{shotBean.redrawCanvas}"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div class="control-group button-group">
+                <label class="button-label">Действия:</label>
+                <div class="buttons-container">
+                    <h:commandButton id="check" value="Проверить" action="#{shotBean.shoot}">
+                        <f:ajax execute="@form" render="table formMessages yMsg"/>
+                    </h:commandButton>
+
+                    <h:commandButton id="clear" value="Очистить" action="#{shotBean.clear}">
+                        <f:ajax execute="@this" render="table formMessages"/>
+                    </h:commandButton>
+                    <h:commandButton value="Вернуться на старт" action="goHome"
+                                     styleClass="main-action-button"/>
+                </div>
+            </div>
+        </div>
+
+        <div id="canvas" class="graph-container">
+            <canvas id="area" width="400" height="400"></canvas>
+        </div>
+
+        <div class="results-section">
+            <h:dataTable id="table" value="#{shotBean.history}" var="h"  styleClass="results-table">
+                <h:column><f:facet name="header">X</f:facet>#{h.x}</h:column>
+                <h:column><f:facet name="header">Y</f:facet>#{h.y}</h:column>
+                <h:column><f:facet name="header">R</f:facet>#{h.r}</h:column>
+                <h:column><f:facet name="header">Попадание</f:facet>#{h.hit?'да':'нет'}</h:column>
+                <h:column><f:facet name="header">Время</f:facet>#{h.time}</h:column>
+            </h:dataTable>
+        </div>
+    </h:form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.drawArea) {
+                window.drawArea();
+            }
+        });
+    </script>
+</h:body>
+</html>

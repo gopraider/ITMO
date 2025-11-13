@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Пора на фронт — старт</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <nav class="description">
+        <div class="info-container">
+            <a href="https://se.ifmo.ru/" target="_blank" class="image-link">
+                <h:graphicImage library="images" name="duck.png" alt="duck" styleClass="duck"/>
+            </a>
+            <div id="Information">
+                Калакин Ярослав Евгеньевич
+                <br/>P3209
+                <br/>ИСУ: 466084
+                <br/>Вариант 616
+            </div>
+            <a href="https://github.com/gopraider" target="_blank" class="image-link">
+                <h:graphicImage library="images" name="GitHub.png" alt="GHimage" styleClass="GHimage"/>
+            </a>
+        </div>
+        <div class="quote-container">
+            <blockquote class="nice-quote">
+                "Вы че, дурные? Другой реакции кроме "суицида" на неуспех изобразить не можете? Нормальная реакция на провал - сжать (разные места) и бороться =). Тряпки."
+            </blockquote>
+            <cite class="quote-author">@Клименков С.В.</cite>
+        </div>
+        <div class="quote-container">
+            <blockquote class="nice-quote">
+                «Все хвалят ЛДПР и меня. Это и есть демократия»
+            </blockquote>
+            <cite class="quote-author">@Жириновский В.В.</cite>
+        </div>
+    </nav>
+
+
+    <div class="clock-section">
+        <div id="clock" class="clock-display"></div>
+
+        <h:form>
+            <h:commandButton value="Перейти на основную страницу" action="goApp"
+                             styleClass="main-action-button"/>
+        </h:form>
+    </div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var dateStr = now.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            var timeStr = now.toLocaleTimeString('ru-RU', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('clock').textContent = dateStr + ' ' + timeStr;
+        }
+
+        updateClock();
+        setInterval(updateClock, 7000);
+    </script>
+
+</h:body>
+</html>
