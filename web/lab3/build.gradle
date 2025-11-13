@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    // Только API — это compileOnly, в WAR не попадёт.
+    compileOnly 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
+
+    // Если остаёшься на RESOURCE_LOCAL — драйвер положим в WAR:
+    implementation 'org.postgresql:postgresql:42.7.4'
+
+    // (Опционально) Доп. либы, если реально нужны в рантайме:
+    // implementation 'org.hibernate.orm:hibernate-core:6.6.3.Final'  // можно вообще не класть — WildFly уже даёт JPA
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}

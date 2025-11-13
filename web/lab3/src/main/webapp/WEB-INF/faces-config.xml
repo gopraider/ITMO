@@ -1,0 +1,33 @@
+<faces-config xmlns="https://jakarta.ee/xml/ns/jakartaee" version="4.0">
+
+    <managed-bean>
+        <managed-bean-name>clockBean</managed-bean-name>
+        <managed-bean-class>org.example.beans.ClockBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>shotBean</managed-bean-name>
+        <managed-bean-class>org.example.beans.ShotBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goApp</from-outcome>
+            <to-view-id>/app.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/app.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goHome</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>
