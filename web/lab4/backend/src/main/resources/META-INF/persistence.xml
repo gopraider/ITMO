@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="3.1">
+
+    <persistence-unit name="areaPU" transaction-type="JTA">
+
+        <!-- ВАЖНО: совпадает с тем, что в логе: Bound data source [java:/PostgresDS] -->
+        <jta-data-source>java:/PostgresDS</jta-data-source>
+
+        <!-- перечисли все свои entity-классы, если нужно -->
+        <!--
+        <class>org.example.model.User</class>
+        <class>org.example.model.HitRecord</class>
+        -->
+
+        <properties>
+            <!-- схему уже создали, можно оставить update или none -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>

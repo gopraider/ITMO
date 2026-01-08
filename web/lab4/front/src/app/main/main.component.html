@@ -1,0 +1,77 @@
+<div class="description">
+  <div class="info-container">
+    <div id="Information">
+      Калакин Ярослав Евгеньевич<br>
+      P3209<br>
+      ИСУ: 466084<br>
+      Вариант 666
+    </div>
+  </div>
+</div>
+
+<div id="mainForm">
+  <h2>Проверка попадания точки</h2>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+  <div class="controls-container">
+    <div class="control-group">
+      <label>Координата X:</label>
+      <select [(ngModel)]="x" name="x">
+        <option *ngFor="let v of xValues" [ngValue]="v">{{ v }}</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Координата Y:</label>
+      <input type="number" [(ngModel)]="y" name="y" step="0.1">
+    </div>
+
+    <div class="control-group">
+      <label>Радиус R:</label>
+      <select [(ngModel)]="r" name="r" (change)="drawArea()">
+        <option [ngValue]="1">1</option>
+        <option [ngValue]="1.5">1.5</option>
+        <option [ngValue]="2">2</option>
+        <option [ngValue]="2.5">2.5</option>
+        <option [ngValue]="3">3</option>
+      </select>
+    </div>
+
+    <div class="control-group button-group">
+      <label class="button-label">Действия:</label>
+      <div class="buttons-container">
+        <button pButton type="button" label="Проверить" (click)="shoot()"></button>
+        <button pButton type="button" label="Очистить" (click)="clear()"></button>
+        <button pButton type="button" label="Выйти" (click)="logout()"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="canvas">
+    <canvas id="area" width="400" height="400"></canvas>
+  </div>
+
+  <div class="results-section">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>X</th>
+          <th>Y</th>
+          <th>R</th>
+          <th>Попадание</th>
+          <th>Время</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of history">
+          <td>{{ h.x }}</td>
+          <td>{{ h.y }}</td>
+          <td>{{ h.r }}</td>
+          <td>{{ h.hit ? 'да' : 'нет' }}</td>
+          <td>{{ h.time }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

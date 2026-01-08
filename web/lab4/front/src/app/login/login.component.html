@@ -1,0 +1,30 @@
+<div class="description">
+    <div class="info-container">
+        <div id="Information">
+            Калакин Ярослав Евгеньевич<br>
+            P3209<br>
+            ИСУ: 466084<br>
+            Вариант 666
+        </div>
+    </div>
+</div>
+
+<div class="clock-section">
+    <h2>Вход в систему</h2>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+
+    <form (ngSubmit)="login()" class="login-form">
+        <div class="form-row">
+            <label>Логин</label>
+            <input pInputText type="text" [(ngModel)]="username" name="username" required>
+        </div>
+
+        <div class="form-row">
+            <label>Пароль</label>
+            <input pPassword [feedback]="false" [(ngModel)]="password" name="password" required>
+        </div>
+
+        <button pButton type="submit" label="Войти"></button>
+    </form>
+</div>

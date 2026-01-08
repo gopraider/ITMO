@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'org.example'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Jakarta EE API (полностью, для EJB, JPA, JAX-RS)
+    providedCompile 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
+
+    // PostgreSQL driver (НЕ provided — сервер может не иметь драйвер)
+    implementation 'org.postgresql:postgresql:42.7.3'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+war {
+    archiveFileName = 'backend.war'
+}
