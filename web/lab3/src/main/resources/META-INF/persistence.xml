@@ -6,7 +6,7 @@
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5436/studs"/>
             <property name="jakarta.persistence.jdbc.user" value="s466084"/>
-            <property name="jakarta.persistence.jdbc.password" value="mh3gJSxzAFPqxbua"/>
+            <property name="jakarta.persistence.jdbc.password" value="fddfdfdfdfdf"/>
 
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
